@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepPestNet - Premium Crop Pest Detection</title>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Background Decorators -->
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo-wrapper">
+                <i class="fa-solid fa-bug logo-icon"></i>
+            </div>
+            <h1>DeepPest<span>Net</span></h1>
+            <p>Advanced AI for accurate crop pest identification</p>
+        </header>
+
+        <main class="glass-panel">
+            <!-- Upload Area -->
+            <div id="upload-container" class="upload-area">
+                <input type="file" id="file-input" accept="image/jpeg, image/png, image/webp" hidden>
+                <div class="upload-content">
+                    <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                    <h3>Drag & Drop your crop image here</h3>
+                    <p>or</p>
+                    <button class="btn browse-btn" onclick="document.getElementById('file-input').click()">
+                        <i class="fa-solid fa-folder-open"></i> Browse Files
+                    </button>
+                    <p class="formats">Supports JPG, PNG, WEBP</p>
+                </div>
+            </div>
+
+            <!-- Preview Area -->
+            <div id="preview-container" class="preview-area hidden">
+                <div class="image-wrapper">
+                    <img id="image-preview" src="" alt="Crop Preview">
+                </div>
+                <div class="actions">
+                    <button class="btn btn-secondary" id="reset-btn">
+                        <i class="fa-solid fa-arrow-rotate-left"></i> Try Another
+                    </button>
+                    <button class="btn btn-primary" id="predict-btn">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Analyze Image
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Analyzing morphology and extracting features...</p>
+            </div>
+
+            <!-- Results Display -->
+            <div id="result-container" class="result-area hidden">
+                <h2 class="result-title">Detection Result</h2>
+                <div class="result-card" id="success-card">
+                    <div class="result-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div class="result-details">
+                        <p class="pest-name" id="pest-name">Unknown</p>
+                        <p class="confidence-label">Confidence Score</p>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="confidence-bar" style="width: 0%"></div>
+                        </div>
+                        <p class="confidence-val" id="confidence-text">0.00%</p>
+                    </div>
+                </div>
+                <!-- Error Message Container -->
+                <div class="error-msg hidden" id="error-message">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <p id="error-text">An error occurred.</p>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Powered by PyTorch & EfficientNet-B0 with CBAM</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
